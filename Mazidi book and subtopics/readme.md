@@ -1,3 +1,4 @@
+## page number in book
 Registers and basics - 57 to 63
 how assembly language works and basics - 64 to 78
 data types and basics - 79 to 83
