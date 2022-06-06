@@ -1,0 +1,104 @@
+A51 MACRO ASSEMBLER  ROUSH                                                                10/18/2021 16:26:35 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.2.5.0
+OBJECT MODULE PLACED IN .\Objects\roush.obj
+ASSEMBLER INVOKED BY: C:\Keil_v5\C51\BIN\A51.EXE roush.asm SET(SMALL) DEBUG PRINT(.\Listings\roush.lst) OBJECT(.\Objects
+                      \roush.obj) EP
+
+LOC  OBJ            LINE     SOURCE
+
+0000                   1     ORG 0
+
+0000 75A0FF            2     MOV P2,#0FFH ;make P2 an input port
+
+0003 758920            3     MOV TMOD,#20H ;timer 1, mode 2
+
+0006 758DFA            4     MOV TH1,#0FAH ;4800 baud rate
+
+0009 759850            5     MOV SCON,#50H ;8-bit, 1 stop, REN enabled
+
+000C D28E              6     SETB TR1 ;start timer 1
+
+000E 900034            7     MOV DPTR,#MYDATA ;load pointer for message
+
+0011 E4                8     H_1: CLR A
+
+0012 93                9     MOVC A,@A+DPTR ;get the character
+
+0013 6005             10     JZ B_1 ;if last character get out
+
+0015 1124             11     ACALL SEND ;otherwise call transfer
+
+0017 A3               12     INC DPTR ;next one
+
+0018 80F7             13     SJMP H_1 ;stay in loop
+
+001A E5A0             14     B_1: MOV a,P2 ;read data on P2
+
+001C 1124             15     ACALL SEND ;transfer it serially
+
+001E 112C             16     ACALL RECV ;get the serial data
+
+0020 F590             17     MOV P1,A ;display it on LEDs
+
+0022 80F6             18     SJMP B_1 ;stay in loop indefinitely
+
+                      19     ;----serial data transfer. ACC has the data------
+
+0024 F599             20     SEND: MOV SBUF,A ;load the data
+
+0026 3099FD           21     H_2: JNB TI,H_2 ;stay here until last bit 
+
+                      22     ;gone
+
+0029 C299             23     CLR TI ;get ready for next char
+
+002B 22               24     RET ;return to caller
+
+                      25     ;----Receive data serially in ACC----------------
+
+002C 3098FD           26     RECV: JNB RI,RECV ;wait here for char
+
+002F E599             27     MOV A,SBUF ;save it in ACC
+
+0031 C298             28     CLR RI ;get ready for next char
+
+0033 22               29     RET ;return to call
+
+0034 57652041         30     MYDATA: DB 'We Are Ready',0
+
+0038 72652052                
+003C 65616479                
+0040 00                      
+                      31     END
+
+A51 MACRO ASSEMBLER  ROUSH                                                                10/18/2021 16:26:35 PAGE     2
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+B_1. . . . . . . .  C ADDR   001AH   A   
+H_1. . . . . . . .  C ADDR   0011H   A   
+H_2. . . . . . . .  C ADDR   0026H   A   
+MYDATA . . . . . .  C ADDR   0034H   A   
+P1 . . . . . . . .  D ADDR   0090H   A   
+P2 . . . . . . . .  D ADDR   00A0H   A   
+RECV . . . . . . .  C ADDR   002CH   A   
+RI . . . . . . . .  B ADDR   0098H.0 A   
+SBUF . . . . . . .  D ADDR   0099H   A   
+SCON . . . . . . .  D ADDR   0098H   A   
+SEND . . . . . . .  C ADDR   0024H   A   
+TH1. . . . . . . .  D ADDR   008DH   A   
+TI . . . . . . . .  B ADDR   0098H.1 A   
+TMOD . . . . . . .  D ADDR   0089H   A   
+TR1. . . . . . . .  B ADDR   0088H.6 A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)

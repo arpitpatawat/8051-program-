@@ -1,0 +1,71 @@
+A51 MACRO ASSEMBLER  TASK4_1                                                              10/11/2021 18:40:21 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.2.5.0
+OBJECT MODULE PLACED IN .\Objects\TASK4_1.obj
+ASSEMBLER INVOKED BY: C:\Keil_v5\C51\BIN\A51.EXE TASK4_1.ASM SET(SMALL) DEBUG PRINT(.\Listings\TASK4_1.lst) OBJECT(.\Obj
+                      ects\TASK4_1.obj) EP
+
+LOC  OBJ            LINE     SOURCE
+
+0000                   1     ORG 000H
+
+0000 90001E            2     XX: MOV DPTR, #MYDATA
+
+0003 758920            3     MOV TMOD, #20H
+
+0006 758DFD            4     MOV TH1,#-3
+
+0009 759850            5     MOV SCON,#50H
+
+000C D28E              6     SETB TR1
+
+000E 790F              7     MOV R1,#15
+
+0010 E4                8     AGAIN:CLR A
+
+0011 93                9     MOVC A,@A+DPTR
+
+0012 F599             10     MOV SBUF,A
+
+0014 3099FD           11     HERE: JNB TI,HERE
+
+0017 C299             12     CLR TI
+
+0019 A3               13     INC DPTR
+
+001A D9F4             14     DJNZ R1,AGAIN
+
+001C 80E2             15     SJMP XX
+
+001E 41525049         16     MYDATA: DB 'ARPIT 19BEC0358'
+
+0022 54203139                
+0026 42454330                
+002A 333538                  
+                      17     END
+
+A51 MACRO ASSEMBLER  TASK4_1                                                              10/11/2021 18:40:21 PAGE     2
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+AGAIN. . . . . . .  C ADDR   0010H   A   
+HERE . . . . . . .  C ADDR   0014H   A   
+MYDATA . . . . . .  C ADDR   001EH   A   
+SBUF . . . . . . .  D ADDR   0099H   A   
+SCON . . . . . . .  D ADDR   0098H   A   
+TH1. . . . . . . .  D ADDR   008DH   A   
+TI . . . . . . . .  B ADDR   0098H.1 A   
+TMOD . . . . . . .  D ADDR   0089H   A   
+TR1. . . . . . . .  B ADDR   0088H.6 A   
+XX . . . . . . . .  C ADDR   0000H   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)

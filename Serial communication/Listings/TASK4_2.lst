@@ -1,0 +1,56 @@
+A51 MACRO ASSEMBLER  TASK4_2                                                              10/11/2021 18:49:47 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.2.5.0
+OBJECT MODULE PLACED IN .\Objects\TASK4_2.obj
+ASSEMBLER INVOKED BY: C:\Keil_v5\C51\BIN\A51.EXE TASK4_2.ASM SET(SMALL) DEBUG PRINT(.\Listings\TASK4_2.lst) OBJECT(.\Obj
+                      ects\TASK4_2.obj) EP
+
+LOC  OBJ            LINE     SOURCE
+
+0000                   1     ORG 0000H
+
+0000 758920            2     MOV TMOD,#20H
+
+0003 758DFA            3     MOV TH1,#-6
+
+0006 759850            4     MOV SCON,#50H
+
+0009 D28E              5     SETB TR1
+
+000B 3098FD            6     HERE: JNB RI,HERE
+
+000E E599              7     MOV A,SBUF
+
+0010 F590              8     MOV P1,A
+
+0012 C298              9     CLR RI
+
+0014 80F5             10     SJMP HERE
+
+                      11     END
+
+                                     
+
+A51 MACRO ASSEMBLER  TASK4_2                                                              10/11/2021 18:49:47 PAGE     2
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+HERE . . . . . . .  C ADDR   000BH   A   
+P1 . . . . . . . .  D ADDR   0090H   A   
+RI . . . . . . . .  B ADDR   0098H.0 A   
+SBUF . . . . . . .  D ADDR   0099H   A   
+SCON . . . . . . .  D ADDR   0098H   A   
+TH1. . . . . . . .  D ADDR   008DH   A   
+TMOD . . . . . . .  D ADDR   0089H   A   
+TR1. . . . . . . .  B ADDR   0088H.6 A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)

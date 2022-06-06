@@ -1,0 +1,99 @@
+A51 MACRO ASSEMBLER  TASK4_3                                                              10/18/2021 16:40:07 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.2.5.0
+OBJECT MODULE PLACED IN .\Objects\TASK4_3.obj
+ASSEMBLER INVOKED BY: C:\Keil_v5\C51\BIN\A51.EXE TASK4_3.ASM SET(SMALL) DEBUG PRINT(.\Listings\TASK4_3.lst) OBJECT(.\Obj
+                      ects\TASK4_3.obj) EP
+
+LOC  OBJ            LINE     SOURCE
+
+0000                   1     ORG 000H
+
+0000 758920            2     MOV TMOD,#20H
+
+0003 758DFA            3     MOV TH1,#-6
+
+0006 759850            4     MOV SCON,#50H
+
+0009 75A0FF            5     MOV P2, #11111111B
+
+000C D28E              6     SETB TR1
+
+000E 790F              7     MOV R1,#15
+
+0010 900033            8     MOV DPTR,#MYDATA
+
+0013 E4                9     LOOP: CLR A
+
+0014 93               10     MOVC A,@A+DPTR
+
+0015 F599             11     MOV SBUF,A
+
+0017 3099FD           12     HERE:JNB TI,HERE
+
+001A C299             13     CLR TI
+
+001C A3               14     INC DPTR
+
+001D D9F4             15     DJNZ R1,LOOP
+
+                      16     ;-------------------
+
+001F 3098FD           17     AGAIN:JNB RI,AGAIN
+
+0022 E599             18     MOV A,SBUF
+
+0024 F590             19     MOV P1,A
+
+0026 C298             20     CLR RI
+
+                      21     ;--------------------
+
+0028 E5A0             22     MOV A,P2
+
+002A F599             23     MOV SBUF,A
+
+002C 3099FD           24     THIS: JNB TI,THIS
+
+002F C299             25     CLR TI
+
+0031 80EC             26     SJMP AGAIN
+
+                      27     
+
+0033 41525049         28     MYDATA: DB 'ARPIT 19BEC0358'
+
+0037 54203139                
+003B 42454330                
+003F 333538                  
+                      29     END
+
+A51 MACRO ASSEMBLER  TASK4_3                                                              10/18/2021 16:40:07 PAGE     2
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+AGAIN. . . . . . .  C ADDR   001FH   A   
+HERE . . . . . . .  C ADDR   0017H   A   
+LOOP . . . . . . .  C ADDR   0013H   A   
+MYDATA . . . . . .  C ADDR   0033H   A   
+P1 . . . . . . . .  D ADDR   0090H   A   
+P2 . . . . . . . .  D ADDR   00A0H   A   
+RI . . . . . . . .  B ADDR   0098H.0 A   
+SBUF . . . . . . .  D ADDR   0099H   A   
+SCON . . . . . . .  D ADDR   0098H   A   
+TH1. . . . . . . .  D ADDR   008DH   A   
+THIS . . . . . . .  C ADDR   002CH   A   
+TI . . . . . . . .  B ADDR   0098H.1 A   
+TMOD . . . . . . .  D ADDR   0089H   A   
+TR1. . . . . . . .  B ADDR   0088H.6 A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)
