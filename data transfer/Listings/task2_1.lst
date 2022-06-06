@@ -1,0 +1,59 @@
+A51 MACRO ASSEMBLER  TASK2_1                                                              08/26/2021 23:55:44 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.2.5.0
+OBJECT MODULE PLACED IN .\Objects\task2_1.obj
+ASSEMBLER INVOKED BY: C:\Keil_v5\C51\BIN\A51.EXE task2_1.ASM SET(SMALL) DEBUG PRINT(.\Listings\task2_1.lst) OBJECT(.\Obj
+                      ects\task2_1.obj) EP
+
+LOC  OBJ            LINE     SOURCE
+
+0000                   1     ORG 0000h
+
+0000 7400              2     MOV A,#00H
+
+0002 900200            3     MOV DPTR,#200H
+
+0005 7909              4     MOV R1,#09H
+
+0007 7840              5     MOV R0,#40H
+
+0009 E4                6     LOOP:CLR A
+
+000A 93                7     MOVC A,@A+DPTR
+
+000B F6                8     MOV@R0,A
+
+000C A3                9     INC DPTR
+
+000D 08               10     INC R0
+
+000E D9F9             11     DJNZ R1,LOOP
+
+0010 80FE             12     HERE:SJMP HERE
+
+                      13     
+
+0200                  14     ORG 0200H
+
+0200 31394245         15     DB "19BEC0358"
+
+0204 43303335                
+0208 38                      
+*** WARNING #A41 IN 15 (task2_1.ASM, LINE 15): MISSING 'END' STATEMENT
+A51 MACRO ASSEMBLER  TASK2_1                                                              08/26/2021 23:55:44 PAGE     2
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+HERE . . . . . . .  C ADDR   0010H   A   
+LOOP . . . . . . .  C ADDR   0009H   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  1 WARNING(S), 0 ERROR(S)

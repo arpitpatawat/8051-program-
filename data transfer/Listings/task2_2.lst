@@ -1,0 +1,77 @@
+A51 MACRO ASSEMBLER  TASK2_2                                                              08/31/2021 23:48:19 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.2.5.0
+OBJECT MODULE PLACED IN .\Objects\task2_2.obj
+ASSEMBLER INVOKED BY: C:\Keil_v5\C51\BIN\A51.EXE task2_2.ASM SET(SMALL) DEBUG PRINT(.\Listings\task2_2.lst) OBJECT(.\Obj
+                      ects\task2_2.obj) EP
+
+LOC  OBJ            LINE     SOURCE
+
+0000                   1     ORG 000H
+
+0000 900200            2     MOV DPTR, #200H
+
+0003 7840              3     MOV R0, #       40H
+
+0005 7909              4     MOV R1, #09H
+
+0007 E4                5     LOOP: CLR A
+
+0008 93                6     MOVC A,@A+DPTR
+
+0009 F6                7     MOV @R0,A
+
+000A 08                8     INC R0
+
+000B A3                9     INC DPTR
+
+000C D9F9             10     DJNZ R1,LOOP
+
+000E 7840             11     MOV R0, #40H
+
+0010 7960             12     MOV R1, #60H
+
+0012 7B09             13     MOV R3, #09H
+
+0014 E4               14     LOOP2: CLR A
+
+0015 E6               15     MOV A,@R0
+
+0016 F7               16     MOV @R1,A
+
+0017 08               17     INC R0
+
+0018 09               18     INC R1
+
+0019 DBF9             19     DJNZ R3,LOOP2
+
+001B 80FE             20     HERE: SJMP HERE
+
+0200                  21     ORG 200H
+
+0200 31394245         22     DB "19BEC0053"
+
+0204 43303035                
+0208 33                      
+                      23     END
+
+                                     
+
+A51 MACRO ASSEMBLER  TASK2_2                                                              08/31/2021 23:48:19 PAGE     2
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+HERE . . . . . . .  C ADDR   001BH   A   
+LOOP . . . . . . .  C ADDR   0007H   A   
+LOOP2. . . . . . .  C ADDR   0014H   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)

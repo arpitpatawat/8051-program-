@@ -1,0 +1,33 @@
+A51 MACRO ASSEMBLER  PRACTICE                                                             09/15/2021 23:05:16 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.2.5.0
+OBJECT MODULE PLACED IN .\Objects\practice.obj
+ASSEMBLER INVOKED BY: C:\Keil_v5\C51\BIN\A51.EXE practice.ASM SET(SMALL) DEBUG PRINT(.\Listings\practice.lst) OBJECT(.\O
+                      bjects\practice.obj) EP
+
+LOC  OBJ            LINE     SOURCE
+
+0000 74FF              1     MOV A,#0FFH
+
+0002 A9AE              2     MOV R1,0AEH
+
+0004 29                3     ADD A,R1
+
+0005 D4                4     DA A
+
+*** WARNING #A41 IN 4 (practice.ASM, LINE 4): MISSING 'END' STATEMENT
+A51 MACRO ASSEMBLER  PRACTICE                                                             09/15/2021 23:05:16 PAGE     2
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  1 WARNING(S), 0 ERROR(S)
