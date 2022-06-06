@@ -1,0 +1,39 @@
+A51 MACRO ASSEMBLER  TASK3_2                                                              09/20/2021 19:36:33 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.2.5.0
+OBJECT MODULE PLACED IN .\Objects\TASK3_2.obj
+ASSEMBLER INVOKED BY: C:\Keil_v5\C51\BIN\A51.EXE TASK3_2.ASM SET(SMALL) DEBUG PRINT(.\Listings\TASK3_2.lst) OBJECT(.\Obj
+                      ects\TASK3_2.obj) EP
+
+LOC  OBJ            LINE     SOURCE
+
+0000 74FF              1     MOV A,#0FFH
+
+0002 F590              2     MOV P1,A
+
+0004 E590              3     HERE: MOV A,P1
+
+0006 F5A0              4     MOV P2,A
+
+0008 80FA              5     SJMP HERE
+
+                       6     END
+
+A51 MACRO ASSEMBLER  TASK3_2                                                              09/20/2021 19:36:33 PAGE     2
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+HERE . . . . . . .  C ADDR   0004H   A   
+P1 . . . . . . . .  D ADDR   0090H   A   
+P2 . . . . . . . .  D ADDR   00A0H   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)
