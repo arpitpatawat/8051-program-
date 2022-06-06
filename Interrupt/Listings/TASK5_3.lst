@@ -1,0 +1,119 @@
+A51 MACRO ASSEMBLER  TASK5_3                                                              11/13/2021 19:46:45 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.2.5.0
+OBJECT MODULE PLACED IN .\Objects\TASK5_3.obj
+ASSEMBLER INVOKED BY: C:\Keil_v5\C51\BIN\A51.EXE TASK5_3.ASM SET(SMALL) DEBUG PRINT(.\Listings\TASK5_3.lst) OBJECT(.\Obj
+                      ects\TASK5_3.obj) EP
+
+LOC  OBJ            LINE     SOURCE
+
+                       1     ;UART -> P0
+
+                       2     ; P1 -> UART + P2
+
+                       3     ;5KHZ FREQ WAVE AT P3.2 TIMER 1 MODE 1
+
+                       4     
+
+0000                   5     ORG 000H
+
+0000 020030            6     LJMP MAIN
+
+                       7     
+
+000B                   8     ORG 000BH ;timer 0 Interrupt vector label
+
+000B 758CFF            9     MOV TH0,#0FFH ;for 5 KHz wave
+
+000E 758AA4           10     MOV TL0,#0A4H
+
+0011 B2B2             11     CPL P3.2 ;toggle P3.2
+
+                      12     
+
+0013 32               13     RETI ;return from ISR
+
+                      14     
+
+0023                  15     ORG 0023H ;serial interrupt vector table
+
+0023 020050           16     LJMP SERIAL
+
+                      17     
+
+0030                  18     ORG 0030H ;-- after vector table space
+
+0030 7590FF           19     MAIN: MOV P1,#0FFH ;make P1 an input port
+
+0033 758921           20     MOV TMOD,#00100001B ;TIMER 1 MODE 2 FOR SER COM & TIMER 0 MODE 1 FOR WAVE
+
+                      21     
+
+0036 759850           22     MOV SCON,#50H ;8-bit, 1 stop, REN enabled
+
+0039 75A892           23     MOV IE,#10010010B ;enable serial, timer 0 int.
+
+003C 758DFA           24     MOV TH1,#-6 ;4800 baud rate
+
+003F D28C             25     SETB TR0 ;start timer 0
+
+0041 D28E             26     SETB TR1 ;start timer 1
+
+0043 E590             27     BACK: MOV A,P1 ;read data from port 1
+
+0045 F599             28     MOV SBUF,A ;give a copy to SBUF
+
+0047 F5A0             29     MOV P2,A ;write it to P2
+
+0049 3099FD           30     HERE:JNB TI,HERE
+
+004C C299             31     CLR TI
+
+004E 80F3             32     SJMP BACK 
+
+                      33             
+
+0050 E599             34     SERIAL:MOV A,SBUF ;recieve data from UART and copy to A
+
+0052 F580             35     MOV P0,A ;send serial data to P0
+
+0054 C298             36     CLR RI 
+
+0056 32               37     RETI ;return from ISR
+
+                      38     END
+
+A51 MACRO ASSEMBLER  TASK5_3                                                              11/13/2021 19:46:45 PAGE     2
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+BACK . . . . . . .  C ADDR   0043H   A   
+HERE . . . . . . .  C ADDR   0049H   A   
+IE . . . . . . . .  D ADDR   00A8H   A   
+MAIN . . . . . . .  C ADDR   0030H   A   
+P0 . . . . . . . .  D ADDR   0080H   A   
+P1 . . . . . . . .  D ADDR   0090H   A   
+P2 . . . . . . . .  D ADDR   00A0H   A   
+P3 . . . . . . . .  D ADDR   00B0H   A   
+RI . . . . . . . .  B ADDR   0098H.0 A   
+SBUF . . . . . . .  D ADDR   0099H   A   
+SCON . . . . . . .  D ADDR   0098H   A   
+SERIAL . . . . . .  C ADDR   0050H   A   
+TH0. . . . . . . .  D ADDR   008CH   A   
+TH1. . . . . . . .  D ADDR   008DH   A   
+TI . . . . . . . .  B ADDR   0098H.1 A   
+TL0. . . . . . . .  D ADDR   008AH   A   
+TMOD . . . . . . .  D ADDR   0089H   A   
+TR0. . . . . . . .  B ADDR   0088H.4 A   
+TR1. . . . . . . .  B ADDR   0088H.6 A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)
